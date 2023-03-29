@@ -4,4 +4,6 @@
 </script>
 
 <Navbar />
-<slot />
+<div class="bg-gray-300">
+	<slot />
+</div>

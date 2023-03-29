@@ -18,10 +18,13 @@ const storage = getStorage(app);
 export async function getBackgroundPhotoUrl(): Promise<string> {
 	const bgImagesRef = ref(storage, 'backgrounds');
 	const allImages = (await listAll(bgImagesRef)).items;
-	// get a random image
+	// get an image id
+	// different photo every day
+	const today = new Date();
+	const dateSum = today.getFullYear() + today.getMonth() + today.getDate();
 	const imagesCount = allImages.length;
-	const randomId = Math.floor(Math.random() * (imagesCount + 1));
-	const chosenImageRef = allImages[randomId];
+	const id = dateSum % imagesCount;
+	const chosenImageRef = allImages[id];
 	// return a download url
 	const downloadUrl = await getDownloadURL(chosenImageRef);
 	return downloadUrl;

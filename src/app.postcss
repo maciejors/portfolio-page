@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+	scroll-behavior: smooth;
+}
+
+.btn {
+	@apply cursor-pointer inline-flex items-center justify-center 
+    rounded-md px-2 py-1;
+}
+
+.btn-primary {
+	@apply bg-primary border-primary border-2 text-white transition
+    hover:bg-primary-hover hover:border-primary-hover;
+}
+
+.btn-secondary {
+	@apply bg-white border-primary border-2 text-primary transition
+    hover:bg-gray-200;
+}
