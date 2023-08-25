@@ -10,7 +10,7 @@
 
 <nav
 	class="sticky top-0 w-full bg-primary py-4
-  flex flex-row justify-center sm:justify-start gap-12 sm:px-12"
+  flex flex-row justify-center sm:justify-start gap-12 sm:px-16"
 >
 	{#each items as item (item.id)}
 		<NavbarTile {item} />
