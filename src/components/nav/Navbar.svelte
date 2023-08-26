@@ -14,7 +14,7 @@
 </script>
 
 <nav
-	class="sticky top-0 w-full bg-primary py-4
+	class="sticky top-0 w-full bg-primary py-4 z-10
   flex flex-row justify-center sm:justify-start gap-12 sm:px-16"
 >
 	{#each items as item (item.id)}

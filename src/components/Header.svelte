@@ -1,30 +1,29 @@
 <script lang="ts">
 	import Card from './Card.svelte';
-	import Icon from '@iconify/svelte';
 
 	interface SocialPlatformAcc {
 		id: number;
-		iconId: string;
+		icon: string;
 		url: string;
 	}
 
 	const socials: SocialPlatformAcc[] = [
-		{ id: 1, iconId: 'mdi:github', url: 'https://github.com/maciejors' },
-		{ id: 2, iconId: 'mdi:linkedin', url: 'https://www.linkedin.com/in/maciejors/' },
+		{ id: 1, icon: 'github', url: 'https://github.com/maciejors' },
+		{ id: 2, icon: 'linkedin', url: 'https://www.linkedin.com/in/maciejors/' },
 	];
 </script>
 
-<header class="bg-home w-full h-96">
+<header class="w-full h-96 bg-cover bg-home bg-no-repeat">
 	<div
-		class="flex flex-col h-full justify-center items-center bg-white bg-opacity-40 px-4 text-gray-800"
+		class="flex flex-col h-full justify-center items-center bg-white bg-opacity-40 px-4 text-gray-800 backdrop-blur-sm"
 	>
 		<Card>
 			<div class="p-4 flex flex-col items-center gap-4">
 				<h1 class="text-center">Maciej Orsłowski</h1>
-				<div class="flex flex-row items-center gap-6">
+				<div class="flex flex-row items-center gap-6 h-8">
 					{#each socials as social (social.id)}
-						<a href={social.url}>
-							<Icon icon={social.iconId} width="32" height="32" />
+						<a href={social.url} class="h-full">
+							<img src={`/iconify-icons/${social.icon}.svg`} alt={social.icon} class="h-full" />
 						</a>
 					{/each}
 				</div>
