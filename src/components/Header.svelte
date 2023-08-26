@@ -20,7 +20,7 @@
 	>
 		<Card>
 			<div class="p-4 flex flex-col items-center gap-4">
-				<h1 class="text-4xl font-medium text-center">Maciej Orsłowski</h1>
+				<h1 class="text-center">Maciej Orsłowski</h1>
 				<div class="flex flex-row items-center gap-6">
 					{#each socials as social (social.id)}
 						<a href={social.url}>
