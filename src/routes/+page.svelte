@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Header from '../components/Header.svelte';
-	import ProjectBrowser from '../components/ProjectBrowser.svelte';
+	import ProjectBrowser from '../components/projects/ProjectBrowser.svelte';
 </script>
 
 <svelte:head>
