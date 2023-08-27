@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Card from './Card.svelte';
+	import Card from './shared/Card.svelte';
 
 	interface SocialPlatformAcc {
 		id: number;
