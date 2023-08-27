@@ -65,7 +65,7 @@ export async function getProjects(): Promise<Project[]> {
 			id: 1,
 			name: 'Lorem ipsum',
 			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-			technologies: ['svelte', 'tailwind', 'python'],
+			technologies: ['svelte', 'tailwind', 'python', 'flask', 'pandas', 'node', 'pascal', 'rust'],
 			repoUrl: '/',
 			pictureUrls: [
 				'https://picsum.photos/600/400',
