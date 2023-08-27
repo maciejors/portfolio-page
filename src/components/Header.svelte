@@ -15,7 +15,7 @@
 
 <header class="w-full h-96 bg-cover bg-home bg-no-repeat">
 	<div
-		class="flex flex-col h-full justify-center items-center bg-white bg-opacity-40 px-4 text-gray-800 backdrop-blur-sm"
+		class="flex flex-col h-full justify-center items-center bg-white bg-opacity-40 px-4 backdrop-blur-sm"
 	>
 		<Card>
 			<div class="p-4 flex flex-col items-center gap-4">
