@@ -3,6 +3,7 @@
 	import type Project from '../../types/project';
 	import Card from '../shared/Card.svelte';
 	import Pill from '../shared/Pill.svelte';
+	import Tooltip from '../shared/Tooltip.svelte';
 
 	export let project: Project;
 </script>
@@ -20,18 +21,24 @@
 		</main>
 		<footer class="flex flex-row gap-4 h-6 w-full justify-end">
 			{#if project.projectUrl !== undefined}
-				<a href={project.projectUrl}>
-					<Icon icon="mdi:launch" height="24" />
-				</a>
+				<Tooltip tooltipText="View project">
+					<a href={project.projectUrl}>
+						<Icon icon="mdi:launch" height="24" />
+					</a>
+				</Tooltip>
 			{/if}
 			{#if project.pictureUrls !== undefined}
-				<button class="inline">
-					<Icon icon="mdi:image" height="24" />
-				</button>
+				<Tooltip tooltipText="View images">
+					<button class="inline">
+						<Icon icon="mdi:image" height="24" />
+					</button>
+				</Tooltip>
 			{/if}
-			<a href={project.repoUrl}>
-				<Icon icon="mdi:code-json" height="24" />
-			</a>
+			<Tooltip tooltipText="View code">
+				<a href={project.repoUrl}>
+					<Icon icon="mdi:code-json" height="24" />
+				</a>
+			</Tooltip>
 		</footer>
 	</div>
 </Card>

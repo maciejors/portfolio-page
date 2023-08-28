@@ -1,15 +1,22 @@
 <script lang="ts">
 	import Card from './shared/Card.svelte';
+	import Tooltip from './shared/Tooltip.svelte';
 
-	interface SocialPlatformAcc {
+	interface SocialBtnData {
 		id: number;
 		icon: string;
 		url: string;
+		description: string;
 	}
 
-	const socials: SocialPlatformAcc[] = [
-		{ id: 1, icon: 'github', url: 'https://github.com/maciejors' },
-		{ id: 2, icon: 'linkedin', url: 'https://www.linkedin.com/in/maciejors/' },
+	const socials: SocialBtnData[] = [
+		{ id: 1, icon: 'github', url: 'https://github.com/maciejors', description: 'Github' },
+		{
+			id: 2,
+			icon: 'linkedin',
+			url: 'https://www.linkedin.com/in/maciejors/',
+			description: 'LinkedIn',
+		},
 	];
 </script>
 
@@ -22,9 +29,16 @@
 				<h1 class="text-center">Maciej Orsłowski</h1>
 				<div class="flex flex-row items-center gap-6 h-8">
 					{#each socials as social (social.id)}
-						<a href={social.url} class="h-full">
-							<img src={`/iconify-icons/${social.icon}.svg`} alt={social.icon} class="h-full" />
-						</a>
+						<Tooltip tooltipText={social.description}>
+							<a href={social.url}>
+								<img
+									src={`/iconify-icons/${social.icon}.svg`}
+									alt={social.icon}
+									height="32"
+									width="32"
+								/>
+							</a>
+						</Tooltip>
 					{/each}
 				</div>
 			</div>
