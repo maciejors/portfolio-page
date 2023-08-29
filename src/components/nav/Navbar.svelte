@@ -1,11 +1,6 @@
 <script lang="ts">
 	import NavbarTile from './NavbarTile.svelte';
-
-	interface NavbarTileItem {
-		id: number;
-		label: string;
-		href: string;
-	}
+	import type NavbarTileItem from './navbarTileItem';
 
 	const items: NavbarTileItem[] = [
 		{ id: 1, label: 'Home', href: '/' },
