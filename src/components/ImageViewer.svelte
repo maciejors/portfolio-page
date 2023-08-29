@@ -23,12 +23,21 @@
 </button>
 {#if visible}
 	<div class="overlay">
-		<img src={images[activeImageIdx]} alt="Image {activeImageIdx + 1}/{images.length}" />
-		<nav>
-			<button on:click={() => activeImageIdx--} class:invisible={activeImageIdx === 0}>
+		<div class="px-16 w-full h-full flex justify-center items-center">
+			<img src={images[activeImageIdx]} alt="Image {activeImageIdx + 1}/{images.length}" />
+		</div>
+		<nav
+			class="h-full w-full absolute top-0 left-0 p-2 flex justify-between items-center transition-opacity"
+		>
+			<button
+				class="h-fit"
+				on:click={() => activeImageIdx--}
+				class:invisible={activeImageIdx === 0}
+			>
 				<ArrowLeftIcon size="48" />
 			</button>
 			<button
+				class="h-fit"
 				on:click={() => activeImageIdx++}
 				class:invisible={activeImageIdx === images.length - 1}
 			>
@@ -43,20 +52,12 @@
 
 <style lang="postcss">
 	.overlay {
-		@apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-40 flex justify-center items-center;
+		@apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-40;
 	}
 
 	img {
 		max-width: 90%;
 		max-height: 100%;
-	}
-
-	nav {
-		@apply opacity-0 h-full w-full absolute top-0 left-0 p-2 flex justify-between transition-opacity;
-	}
-
-	nav:hover {
-		@apply opacity-100;
 	}
 
 	nav button {

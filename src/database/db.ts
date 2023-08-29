@@ -29,7 +29,7 @@ export async function getProjects(): Promise<Project[]> {
 			repoUrl: '/',
 			pictureUrls: [
 				'https://picsum.photos/2000/2000',
-				'https://picsum.photos/200/400',
+				'https://picsum.photos/2000/2000',
 				'https://picsum.photos/500/300',
 			],
 		},
