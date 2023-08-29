@@ -15,12 +15,12 @@
 				<div class="flex flex-row items-center gap-6 h-8">
 					<Tooltip tooltipText="Github">
 						<a href="https://github.com/maciejors">
-							<IconGithub size="32" />
+							<IconGithub size="28" />
 						</a>
 					</Tooltip>
 					<Tooltip tooltipText="LinkedIn">
 						<a href="https://www.linkedin.com/in/maciejors/">
-							<IconLinkedin size="32" />
+							<IconLinkedin size="28" />
 						</a>
 					</Tooltip>
 				</div>
