@@ -1,6 +1,8 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import type Project from '../../types/project';
+	import IconCodeJson from '../icons/IconCodeJson.svelte';
+	import IconImageMultiple from '../icons/IconImageMultiple.svelte';
+	import IconLaunch from '../icons/IconLaunch.svelte';
 	import Card from '../shared/Card.svelte';
 	import Pill from '../shared/Pill.svelte';
 	import Tooltip from '../shared/Tooltip.svelte';
@@ -23,20 +25,20 @@
 			{#if project.projectUrl !== undefined}
 				<Tooltip tooltipText="View project">
 					<a href={project.projectUrl}>
-						<Icon icon="mdi:launch" height="24" />
+						<IconLaunch size="24" />
 					</a>
 				</Tooltip>
 			{/if}
 			{#if project.pictureUrls !== undefined}
 				<Tooltip tooltipText="View images">
 					<button class="inline">
-						<Icon icon="mdi:image" height="24" />
+						<IconImageMultiple size="24" />
 					</button>
 				</Tooltip>
 			{/if}
 			<Tooltip tooltipText="View code">
 				<a href={project.repoUrl}>
-					<Icon icon="mdi:code-json" height="24" />
+					<IconCodeJson size="24" />
 				</a>
 			</Tooltip>
 		</footer>
