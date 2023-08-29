@@ -6,11 +6,6 @@ export default {
 			backgroundImage: {
 				home: "url('/bg.jpg')",
 			},
-			colors: {
-				primary: '#009A49',
-				'primary-hover': '#00803C',
-				'primary-light': '#00E66B',
-			},
 		},
 	},
 	plugins: [],
