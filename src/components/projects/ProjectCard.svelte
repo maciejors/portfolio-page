@@ -1,8 +1,7 @@
 <script lang="ts">
+	import { ExternalLinkIcon, CodeIcon } from 'svelte-feather-icons';
 	import type Project from '../../types/project';
-	import IconCodeJson from '../icons/IconCodeJson.svelte';
-	import IconImageMultiple from '../icons/IconImageMultiple.svelte';
-	import IconLaunch from '../icons/IconLaunch.svelte';
+	import ImageViewer from '../ImageViewer.svelte';
 	import Card from '../shared/Card.svelte';
 	import Pill from '../shared/Pill.svelte';
 	import Tooltip from '../shared/Tooltip.svelte';
@@ -25,20 +24,18 @@
 			{#if project.projectUrl !== undefined}
 				<Tooltip tooltipText="View project">
 					<a href={project.projectUrl}>
-						<IconLaunch size="24" />
+						<ExternalLinkIcon size="24" />
 					</a>
 				</Tooltip>
 			{/if}
 			{#if project.pictureUrls !== undefined}
 				<Tooltip tooltipText="View images">
-					<button class="inline">
-						<IconImageMultiple size="24" />
-					</button>
+					<ImageViewer images={project.pictureUrls} />
 				</Tooltip>
 			{/if}
 			<Tooltip tooltipText="View code">
 				<a href={project.repoUrl}>
-					<IconCodeJson size="24" />
+					<CodeIcon size="24" />
 				</a>
 			</Tooltip>
 		</footer>

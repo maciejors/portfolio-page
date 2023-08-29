@@ -28,7 +28,7 @@ export async function getProjects(): Promise<Project[]> {
 			technologies: ['svelte', 'tailwind', 'python'],
 			repoUrl: '/',
 			pictureUrls: [
-				'https://picsum.photos/600/400',
+				'https://picsum.photos/2000/2000',
 				'https://picsum.photos/200/400',
 				'https://picsum.photos/500/300',
 			],

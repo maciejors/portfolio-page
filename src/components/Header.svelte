@@ -1,6 +1,5 @@
 <script lang="ts">
-	import IconGithub from './icons/IconGithub.svelte';
-	import IconLinkedin from './icons/IconLinkedin.svelte';
+	import { GithubIcon, LinkedinIcon } from 'svelte-feather-icons';
 	import Card from './shared/Card.svelte';
 	import Tooltip from './shared/Tooltip.svelte';
 </script>
@@ -15,12 +14,12 @@
 				<div class="flex flex-row items-center gap-6 h-8">
 					<Tooltip tooltipText="Github">
 						<a href="https://github.com/maciejors">
-							<IconGithub size="28" />
+							<GithubIcon size="28" />
 						</a>
 					</Tooltip>
 					<Tooltip tooltipText="LinkedIn">
 						<a href="https://www.linkedin.com/in/maciejors/">
-							<IconLinkedin size="28" />
+							<LinkedinIcon size="28" />
 						</a>
 					</Tooltip>
 				</div>
