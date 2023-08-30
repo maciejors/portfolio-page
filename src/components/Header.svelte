@@ -7,7 +7,7 @@
 	<div
 		class="flex flex-col h-full justify-center items-center bg-white bg-opacity-40 px-4 backdrop-blur-sm"
 	>
-		<div class="card bg-blue-400 text-white p-4 flex flex-col items-center gap-4">
+		<div class="card bg-blue-700 text-white p-4 flex flex-col items-center gap-4">
 			<h1 class="text-center">Maciej Orsłowski</h1>
 			<div class="flex flex-row items-center gap-6 h-8">
 				<Tooltip tooltipText="Github">
