@@ -1,21 +1,28 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { ExternalLinkIcon, CodeIcon, UsersIcon } from 'svelte-feather-icons';
 	import type Project from '../../types/project';
 	import ImageViewer from '../ImageViewer.svelte';
 	import Pill from '../shared/Pill.svelte';
 	import Tooltip from '../shared/Tooltip.svelte';
 
-	export let project: Project;
+	const dispatchEvent = createEventDispatcher<{ pillClick: string }>();
 
-	let collabHoverText = `+${project.collaborators} collaborator`;
+	export let project: Project;
+	export let activePill: string;
+	$: highlighted = project.technologies.includes(activePill);
+
+	let collabHoverText = `${project.collaborators} collaborator`;
 	if (project.collaborators > 1) {
 		collabHoverText += 's';
 	}
+
+	function onPillClick(pillText: string) {
+		dispatchEvent('pillClick', pillText);
+	}
 </script>
 
-<div
-	class="card bg-white border border-gray-100 w-full sm:w-72 h-56 p-3 flex flex-col justify-between"
->
+<div class="card project-card" class:highlighted>
 	<main class="flex flex-col gap-3">
 		<h3 class="flex flex-row justify-start items-center gap-2">
 			<span>{project.name}</span>
@@ -29,7 +36,7 @@
 		</h3>
 		<p class="flex flex-row flex-wrap gap-1.5">
 			{#each project.technologies as t (t)}
-				<Pill>{t}</Pill>
+				<Pill on:click={() => onPillClick(t)} active={activePill === t}>{t}</Pill>
 			{/each}
 		</p>
 		<p>{project.shortDescription}</p>
@@ -58,6 +65,14 @@
 </div>
 
 <style lang="postcss">
+	.project-card {
+		@apply bg-white border border-transparent w-full sm:w-72 h-56 p-3 flex flex-col justify-between transition-colors;
+	}
+
+	.project-card.highlighted {
+		@apply bg-blue-50;
+	}
+
 	.collab-icon:hover {
 		@apply text-gray-700;
 	}

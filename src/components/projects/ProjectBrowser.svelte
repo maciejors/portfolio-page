@@ -6,10 +6,20 @@
 	import { getProjects } from '../../database/db';
 
 	let projects: Project[] = [];
+	let activePill = '';
 
 	onMount(async () => {
 		projects = await getProjects();
 	});
+
+	function onPillClick(e: CustomEvent<string>) {
+		const clickedPill = e.detail;
+		if (clickedPill === activePill) {
+			activePill = '';
+		} else {
+			activePill = clickedPill;
+		}
+	}
 </script>
 
 <article>
@@ -19,7 +29,7 @@
 			<section class="grid grid-flow-row gap-8 py-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				{#each projects as project}
 					<div class="col-span-1">
-						<ProjectCard {project} />
+						<ProjectCard {project} {activePill} on:pillClick={onPillClick} />
 					</div>
 				{/each}
 			</section>
