@@ -36,9 +36,10 @@ export async function getProjects(): Promise<Project[]> {
 		const pictureRefs = (await listAll(storageRef(storage, `app-screenshots/${projectId}`))).items;
 		if (pictureRefs.length !== 0) {
 			const pictureUrls: string[] = [];
-			pictureRefs
-				.sort((p1, p2) => p1.name.localeCompare(p2.name))
-				.forEach(async (picture) => pictureUrls.push(await getDownloadURL(picture)));
+			for (let picture of pictureRefs) {
+				const downloadUrl = await getDownloadURL(picture);
+				pictureUrls.push(downloadUrl);
+			}
 			project.pictureUrls = pictureUrls;
 		}
 		// add a project to the project list

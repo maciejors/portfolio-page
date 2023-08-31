@@ -5,6 +5,8 @@
 
 	let visible = false;
 	let activeImageIdx = 0;
+	let activeImageUrl = images[activeImageIdx];
+	let imageLoading = false;
 
 	function showImages() {
 		activeImageIdx = 0;
@@ -14,7 +16,30 @@
 
 	function hideImages() {
 		visible = false;
-		document.body.style.overflowY = 'scroll';
+		document.body.style.overflowY = 'auto';
+	}
+
+	function prevImage() {
+		activeImageIdx--;
+		updateImage();
+	}
+
+	function nextImage() {
+		activeImageIdx++;
+		updateImage();
+	}
+
+	function updateImage() {
+		imageLoading = true;
+		const newUrl = images[activeImageIdx];
+		// preload image
+		const img = new Image();
+		img.onload = () => {
+			imageLoading = false;
+			// update image
+			activeImageUrl = newUrl;
+		};
+		img.src = newUrl;
 	}
 </script>
 
@@ -24,21 +49,22 @@
 {#if visible}
 	<div class="overlay">
 		<div class="px-16 w-full h-full flex justify-center items-center">
-			<img src={images[activeImageIdx]} alt="Image {activeImageIdx + 1}/{images.length}" />
+			<img
+				src={activeImageUrl}
+				alt="Image {activeImageIdx + 1}/{images.length}"
+				loading="lazy"
+				hidden={imageLoading}
+			/>
 		</div>
 		<nav
 			class="h-full w-full absolute top-0 left-0 p-2 flex justify-between items-center transition-opacity"
 		>
-			<button
-				class="h-fit"
-				on:click={() => activeImageIdx--}
-				class:invisible={activeImageIdx === 0}
-			>
+			<button class="h-fit" on:click={prevImage} class:invisible={activeImageIdx === 0}>
 				<ArrowLeftIcon size="48" />
 			</button>
 			<button
 				class="h-fit"
-				on:click={() => activeImageIdx++}
+				on:click={nextImage}
 				class:invisible={activeImageIdx === images.length - 1}
 			>
 				<ArrowRightIcon size="48" />
