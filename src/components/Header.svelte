@@ -17,17 +17,17 @@
 			<h1>Maciej Orsłowski</h1>
 			<div class="socials-list">
 				<Tooltip tooltipText="Github" delayed>
-					<a href="https://github.com/maciejors">
+					<a href="https://github.com/maciejors" target="_blank">
 						<GithubIcon size="28" />
 					</a>
 				</Tooltip>
 				<Tooltip tooltipText="LinkedIn" delayed>
-					<a href="https://www.linkedin.com/in/maciejors/">
+					<a href="https://www.linkedin.com/in/maciejors/" target="_blank">
 						<LinkedinIcon size="28" />
 					</a>
 				</Tooltip>
 				<Tooltip tooltipText="My CV" delayed>
-					<a href={cvDownloadUrl}>
+					<a href={cvDownloadUrl} target="_blank">
 						<FileTextIcon size="28" />
 					</a>
 				</Tooltip>

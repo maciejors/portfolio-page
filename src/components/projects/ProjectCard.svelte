@@ -44,7 +44,7 @@
 	<footer class="flex flex-row gap-4 h-6 w-full justify-end">
 		{#if project.projectUrl !== undefined}
 			<Tooltip tooltipText="View project" delayed>
-				<a href={project.projectUrl}>
+				<a href={project.projectUrl} target="_blank">
 					<ExternalLinkIcon size="24" />
 				</a>
 			</Tooltip>
@@ -56,7 +56,7 @@
 		{/if}
 		{#if project.repoUrl !== undefined}
 			<Tooltip tooltipText="View code" delayed>
-				<a href={project.repoUrl}>
+				<a href={project.repoUrl} target="_blank">
 					<CodeIcon size="24" />
 				</a>
 			</Tooltip>
