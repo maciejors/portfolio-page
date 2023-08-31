@@ -3,7 +3,8 @@ export default interface Project {
 	name: string;
 	shortDescription: string;
 	technologies: string[];
-	repoUrl: string;
+	collaborators: number;
+	repoUrl?: string;
 	projectUrl?: string;
 	pictureUrls?: string[];
 }

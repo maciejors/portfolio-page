@@ -33,10 +33,12 @@
 				<ImageViewer images={project.pictureUrls} />
 			</Tooltip>
 		{/if}
-		<Tooltip tooltipText="View code">
-			<a href={project.repoUrl}>
-				<CodeIcon size="24" />
-			</a>
-		</Tooltip>
+		{#if project.repoUrl !== undefined}
+			<Tooltip tooltipText="View code">
+				<a href={project.repoUrl}>
+					<CodeIcon size="24" />
+				</a>
+			</Tooltip>
+		{/if}
 	</footer>
 </div>

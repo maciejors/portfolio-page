@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
-import { getStorage } from 'firebase/storage';
+import { getDatabase, ref as databaseRef, get } from 'firebase/database';
+import { getStorage, ref as storageRef, getDownloadURL, listAll } from 'firebase/storage';
 import type Project from '../types/project';
 
 const firebaseConfig = {
@@ -19,67 +19,30 @@ const db = getDatabase(app);
 const storage = getStorage(app);
 
 export async function getProjects(): Promise<Project[]> {
-	await new Promise((resolve) => setTimeout(resolve, 1000));
-	return [
-		{
-			id: 1,
-			name: 'Lorem ipsum',
-			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-			technologies: ['svelte', 'tailwind', 'python'],
-			repoUrl: '/',
-			pictureUrls: [
-				'https://picsum.photos/2000/2000',
-				'https://picsum.photos/2000/2000',
-				'https://picsum.photos/500/300',
-			],
-		},
-		{
-			id: 2,
-			name: 'Lorem 2',
-			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elitd sadsad sadasd',
-			technologies: ['react', 'java'],
-			repoUrl: '/',
-			projectUrl: '/',
-		},
-		{
-			id: 1,
-			name: 'Lorem ipsum',
-			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-			technologies: ['svelte', 'tailwind', 'python'],
-			repoUrl: '/',
-			pictureUrls: [
-				'https://picsum.photos/600/400',
-				'https://picsum.photos/200/400',
-				'https://picsum.photos/500/300',
-			],
-		},
-		{
-			id: 2,
-			name: 'Lorem 2',
-			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elitd sadsad sadasd',
-			technologies: ['react', 'java'],
-			repoUrl: '/',
-			projectUrl: '/',
-		},
-		{
-			id: 1,
-			name: 'Lorem ipsum',
-			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-			technologies: ['svelte', 'tailwind', 'python', 'flask', 'pandas', 'node', 'pascal', 'rust'],
-			repoUrl: '/',
-			pictureUrls: [
-				'https://picsum.photos/600/400',
-				'https://picsum.photos/200/400',
-				'https://picsum.photos/500/300',
-			],
-		},
-		{
-			id: 2,
-			name: 'Lorem 2',
-			shortDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elitd sadsad sadasd',
-			technologies: ['react', 'java'],
-			repoUrl: '/',
-			projectUrl: '/',
-		},
-	];
+	const featuredListSnapshot = await get(databaseRef(db, 'featured'));
+	if (!featuredListSnapshot.exists()) {
+		return [];
+	}
+	const projectIds: number[] = featuredListSnapshot.val();
+	let projects: Project[] = [];
+	for (let projectId of projectIds) {
+		// fetch project data
+		const projectSnapshot = await get(databaseRef(db, `projects/${projectId}`));
+		if (!projectSnapshot.exists()) {
+			console.log(`No data for project of id ${projectId}`);
+		}
+		const project: Project = projectSnapshot.val();
+		// fetch project images (if any exist)
+		const pictureRefs = (await listAll(storageRef(storage, `app-screenshots/${projectId}`))).items;
+		if (pictureRefs.length !== 0) {
+			const pictureUrls: string[] = [];
+			pictureRefs
+				.sort((p1, p2) => p1.name.localeCompare(p2.name))
+				.forEach(async (picture) => pictureUrls.push(await getDownloadURL(picture)));
+			project.pictureUrls = pictureUrls;
+		}
+		// add a project to the project list
+		projects.push(project);
+	}
+	return projects;
 }
