@@ -50,7 +50,7 @@
 	}
 
 	.profile-card {
-		@apply bg-blue-700 text-white p-4 flex flex-col items-center gap-4;
+		@apply bg-green-600 text-white p-4 flex flex-col items-center gap-4;
 	}
 
 	.socials-list {

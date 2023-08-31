@@ -12,6 +12,6 @@
 	}
 
 	.pill.active {
-		@apply bg-blue-300 hover:bg-blue-400;
+		@apply bg-green-400 hover:bg-green-500;
 	}
 </style>

@@ -70,7 +70,7 @@
 	}
 
 	.project-card.highlighted {
-		@apply bg-blue-50;
+		@apply bg-green-100 border-green-300;
 	}
 
 	.collab-icon:hover {
