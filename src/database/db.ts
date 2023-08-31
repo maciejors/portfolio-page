@@ -47,3 +47,11 @@ export async function getProjects(): Promise<Project[]> {
 	}
 	return projects;
 }
+
+export async function getLastUpdatedDate(): Promise<string> {
+	const lastUpdatedDateSnapshot = await get(databaseRef(db, 'lastUpdated'));
+	if (!lastUpdatedDateSnapshot.exists()) {
+		return '';
+	}
+	return lastUpdatedDateSnapshot.val();
+}
