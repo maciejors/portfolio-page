@@ -24,9 +24,9 @@
 
 <article>
 	<Container>
-		<div class="transition ease-out duration-1000" class:load-transition={projects.length === 0}>
-			<h2 class="w-full text-center md:text-start py-4">My projects:</h2>
-			<section class="grid grid-flow-row gap-8 py-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+		<div class="pre-transition" class:load-transition={projects.length === 0}>
+			<h2>My projects:</h2>
+			<section class="projects-grid">
 				{#each projects as project}
 					<div class="col-span-1">
 						<ProjectCard {project} {activePill} on:pillClick={onPillClick} />
@@ -38,7 +38,19 @@
 </article>
 
 <style lang="postcss">
+	.pre-transition {
+		@apply transition ease-out duration-1000;
+	}
+
 	.load-transition {
 		@apply opacity-0 -translate-y-4;
+	}
+
+	h2 {
+		@apply w-full text-center md:text-start py-4;
+	}
+
+	.projects-grid {
+		@apply grid grid-flow-row gap-8 py-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
 	}
 </style>

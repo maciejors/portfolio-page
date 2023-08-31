@@ -48,7 +48,7 @@
 </button>
 {#if visible}
 	<div class="overlay">
-		<div class="px-16 w-full h-full flex justify-center items-center">
+		<div class="image-container">
 			<img
 				src={activeImageUrl}
 				alt="Image {activeImageIdx + 1}/{images.length}"
@@ -56,9 +56,7 @@
 				hidden={imageLoading}
 			/>
 		</div>
-		<nav
-			class="h-full w-full absolute top-0 left-0 p-2 flex justify-between items-center transition-opacity"
-		>
+		<nav>
 			<button class="h-fit" on:click={prevImage} class:invisible={activeImageIdx === 0}>
 				<ArrowLeftIcon size="48" />
 			</button>
@@ -81,9 +79,17 @@
 		@apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-40;
 	}
 
+	.image-container {
+		@apply px-16 w-full h-full flex justify-center items-center;
+	}
+
 	img {
 		max-width: 90%;
 		max-height: 100%;
+	}
+
+	nav {
+		@apply h-full w-full absolute top-0 left-0 p-2 flex justify-between items-center transition-opacity;
 	}
 
 	nav button {

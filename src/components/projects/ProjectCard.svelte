@@ -22,9 +22,9 @@
 	}
 </script>
 
-<div class="card project-card" class:highlighted>
-	<main class="flex flex-col gap-3">
-		<h3 class="flex flex-row justify-start items-center gap-2">
+<section class="card project-card" class:highlighted>
+	<main>
+		<h3 class="card-title">
 			<span>{project.name}</span>
 			{#if project.collaborators > 0}
 				<span class="collab-icon">
@@ -34,14 +34,14 @@
 				</span>
 			{/if}
 		</h3>
-		<p class="flex flex-row flex-wrap gap-1.5">
+		<p class="pill-list">
 			{#each project.technologies as t (t)}
 				<Pill on:click={() => onPillClick(t)} active={activePill === t}>{t}</Pill>
 			{/each}
 		</p>
 		<p>{project.shortDescription}</p>
 	</main>
-	<footer class="flex flex-row gap-4 h-6 w-full justify-end">
+	<footer>
 		{#if project.projectUrl !== undefined}
 			<Tooltip tooltipText="View project" delayed>
 				<a href={project.projectUrl} target="_blank">
@@ -62,7 +62,7 @@
 			</Tooltip>
 		{/if}
 	</footer>
-</div>
+</section>
 
 <style lang="postcss">
 	.project-card {
@@ -75,5 +75,21 @@
 
 	.collab-icon:hover {
 		@apply text-gray-700;
+	}
+
+	.project-card main {
+		@apply flex flex-col gap-3;
+	}
+
+	.project-card footer {
+		@apply flex flex-row gap-4 h-6 w-full justify-end;
+	}
+
+	.card-title {
+		@apply flex flex-row justify-start items-center gap-2;
+	}
+
+	.pill-list {
+		@apply flex flex-row flex-wrap gap-1.5;
 	}
 </style>
