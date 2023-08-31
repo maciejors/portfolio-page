@@ -55,3 +55,7 @@ export async function getLastUpdatedDate(): Promise<string> {
 	}
 	return lastUpdatedDateSnapshot.val();
 }
+
+export async function getCvDownloadUrl(): Promise<string> {
+	return await getDownloadURL(storageRef(storage, 'CV.pdf'));
+}
