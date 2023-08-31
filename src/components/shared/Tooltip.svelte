@@ -1,23 +1,28 @@
 <script lang="ts">
 	export let tooltipText: string;
+	export let delayed = false;
 </script>
 
-<div class="tooltip">
-	<span class="tooltip-text">{tooltipText}</span>
+<span class="tooltip">
+	<span class="tooltip-text" class:delayed>{tooltipText}</span>
 	<slot />
-</div>
+</span>
 
 <style lang="postcss">
 	.tooltip {
-		@apply relative inline-block;
+		@apply relative;
 	}
 
 	.tooltip-text {
-		@apply opacity-0 absolute bottom-full left-1/2 -translate-x-1/2 z-20 mb-1;
+		@apply invisible opacity-0 absolute bottom-full left-1/2 -translate-x-1/2 z-20 mb-1;
 		@apply bg-gray-700 text-white text-sm text-center rounded px-1.5 py-0.5 whitespace-nowrap;
 	}
 
 	.tooltip:hover .tooltip-text {
-		@apply opacity-100 transition-opacity delay-700;
+		@apply visible opacity-100 transition-opacity;
+	}
+
+	.tooltip:hover .delayed {
+		@apply delay-700;
 	}
 </style>
