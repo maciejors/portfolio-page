@@ -32,20 +32,23 @@ export async function getProjects(): Promise<Project[]> {
 			console.log(`No data for project of id ${projectId}`);
 		}
 		const project: Project = projectSnapshot.val();
-		// fetch project images (if any exist)
-		const pictureRefs = (await listAll(storageRef(storage, `app-screenshots/${projectId}`))).items;
-		if (pictureRefs.length !== 0) {
-			const pictureUrls: string[] = [];
-			for (let picture of pictureRefs) {
-				const downloadUrl = await getDownloadURL(picture);
-				pictureUrls.push(downloadUrl);
-			}
-			project.pictureUrls = pictureUrls;
-		}
 		// add a project to the project list
 		projects.push(project);
 	}
 	return projects;
+}
+
+export async function getProjectImages(projectId: number) {
+	const pictureRefs = (await listAll(storageRef(storage, `app-screenshots/${projectId}`))).items;
+	if (pictureRefs.length === 0) {
+		return [];
+	}
+	const pictureUrls: string[] = [];
+	for (let picture of pictureRefs) {
+		const downloadUrl = await getDownloadURL(picture);
+		pictureUrls.push(downloadUrl);
+	}
+	return pictureUrls;
 }
 
 export async function getLastUpdatedDate(): Promise<string> {

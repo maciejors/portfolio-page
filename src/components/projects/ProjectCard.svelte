@@ -49,9 +49,9 @@
 				</a>
 			</Tooltip>
 		{/if}
-		{#if project.pictureUrls !== undefined}
+		{#if project.hasImages}
 			<Tooltip tooltipText="View images" delayed>
-				<ImageViewer images={project.pictureUrls} />
+				<ImageViewer projectId={project.id} />
 			</Tooltip>
 		{/if}
 		{#if project.repoUrl !== undefined}

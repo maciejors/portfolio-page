@@ -1,17 +1,29 @@
 <script lang="ts">
 	import { ArrowLeftIcon, ArrowRightIcon, ImageIcon, XIcon } from 'svelte-feather-icons';
+	import Spinner from './shared/Spinner.svelte';
+	import { getProjectImages } from '../database/db';
 
-	export let images: string[];
+	export let projectId: number;
 
 	let visible = false;
+	let images: string[] = [];
 	let activeImageIdx = 0;
-	let activeImageUrl = images[activeImageIdx];
-	let imageLoading = false;
+	let activeImageUrl = '';
+	let isLoading = true;
 
-	function showImages() {
+	async function showImages() {
+		// reset state
+		isLoading = true;
 		activeImageIdx = 0;
+		activeImageUrl = '';
 		visible = true;
 		document.body.style.overflowY = 'hidden';
+		// get images urls
+		if (images.length === 0) {
+			images = await getProjectImages(projectId);
+		}
+		// finish loading
+		updateImage();
 	}
 
 	function hideImages() {
@@ -30,12 +42,14 @@
 	}
 
 	function updateImage() {
-		imageLoading = true;
+		// display spinner
+		isLoading = true;
 		const newUrl = images[activeImageIdx];
 		// preload image
 		const img = new Image();
 		img.onload = () => {
-			imageLoading = false;
+			// hide spinner
+			isLoading = false;
 			// update image
 			activeImageUrl = newUrl;
 		};
@@ -52,11 +66,13 @@
 			<img
 				src={activeImageUrl}
 				alt="Image {activeImageIdx + 1}/{images.length}"
-				loading="lazy"
-				hidden={imageLoading}
+				class:invisible={activeImageUrl === ''}
 			/>
+			<div class="spinner-container" class:invisible={!isLoading}>
+				<Spinner radius={32} width={8} />
+			</div>
 		</div>
-		<nav>
+		<nav class:invisible={images.length === 0}>
 			<button class="h-fit" on:click={prevImage} class:invisible={activeImageIdx === 0}>
 				<ArrowLeftIcon size="48" />
 			</button>
@@ -81,6 +97,10 @@
 
 	.image-container {
 		@apply px-16 w-full h-full flex justify-center items-center;
+	}
+
+	.spinner-container {
+		@apply absolute w-full h-full flex justify-center items-center;
 	}
 
 	img {
