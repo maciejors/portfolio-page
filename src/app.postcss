@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+	scroll-behavior: smooth;
+	margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+	overflow-y: auto;
+	overflow-x: hidden;
+	@apply text-gray-800;
+}
+
+a:hover {
+	@apply text-gray-700;
+}
+
+.card {
+	@apply shadow-lg rounded-md;
+}
+
+h1 {
+	@apply text-5xl font-medium;
+}
+
+h2 {
+	@apply text-3xl;
+}
+
+h3 {
+	@apply text-2xl;
+}
