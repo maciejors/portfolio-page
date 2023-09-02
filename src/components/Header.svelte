@@ -44,7 +44,7 @@
 
 <style lang="postcss">
 	header {
-		@apply w-full h-80 bg-cover text-gray-50 bg-green-600 flex flex-row justify-center items-center gap-8 px-40;
+		@apply w-full h-80 bg-cover text-white bg-green-600 flex flex-row justify-center items-center gap-8 px-40;
 	}
 
 	header section {
@@ -52,7 +52,7 @@
 	}
 
 	.bracket {
-		@apply text-9xl text-gray-50 opacity-50;
+		@apply text-9xl text-white opacity-50;
 	}
 
 	.socials-list {
@@ -64,7 +64,7 @@
 	}
 
 	a:hover {
-		@apply text-gray-50 bg-gray-300 bg-opacity-20 border-opacity-50;
+		@apply text-white bg-gray-300 bg-opacity-20 border-opacity-50;
 	}
 
 	a:active {
