@@ -12,35 +12,47 @@
 </script>
 
 <header>
-	<h1>Maciej Orsłowski</h1>
-	<div class="socials-list">
-		<span class="link-wrapper">
-			<Tooltip tooltipText="Github" delayed>
-				<a href="https://github.com/maciejors" target="_blank">
-					<GithubIcon size="28" />
-				</a>
-			</Tooltip>
-		</span>
-		<span class="link-wrapper">
-			<Tooltip tooltipText="LinkedIn" delayed>
-				<a href="https://www.linkedin.com/in/maciejors/" target="_blank">
-					<LinkedinIcon size="28" />
-				</a>
-			</Tooltip>
-		</span>
-		<span class="link-wrapper">
-			<Tooltip tooltipText="CV" delayed>
-				<a href={cvDownloadUrl} target="_blank">
-					<FileTextIcon size="28" />
-				</a>
-			</Tooltip>
-		</span>
-	</div>
+	<span class="bracket">&lt;</span>
+	<section>
+		<h1>Maciej Orsłowski</h1>
+		<div class="socials-list">
+			<span class="link-wrapper">
+				<Tooltip tooltipText="Github" delayed>
+					<a href="https://github.com/maciejors" target="_blank">
+						<GithubIcon size="28" />
+					</a>
+				</Tooltip>
+			</span>
+			<span class="link-wrapper">
+				<Tooltip tooltipText="LinkedIn" delayed>
+					<a href="https://www.linkedin.com/in/maciejors/" target="_blank">
+						<LinkedinIcon size="28" />
+					</a>
+				</Tooltip>
+			</span>
+			<span class="link-wrapper">
+				<Tooltip tooltipText="CV" delayed>
+					<a href={cvDownloadUrl} target="_blank">
+						<FileTextIcon size="28" />
+					</a>
+				</Tooltip>
+			</span>
+		</div>
+	</section>
+	<span class="bracket">/&gt;</span>
 </header>
 
 <style lang="postcss">
 	header {
-		@apply w-full h-80 bg-cover text-gray-50 bg-green-600 flex flex-col justify-center items-center gap-8 px-40;
+		@apply w-full h-80 bg-cover text-gray-50 bg-green-600 flex flex-row justify-center items-center gap-8 px-40;
+	}
+
+	header section {
+		@apply flex flex-col justify-center gap-8;
+	}
+
+	.bracket {
+		@apply text-9xl text-gray-50 opacity-50;
 	}
 
 	.socials-list {
