@@ -51,14 +51,6 @@ export async function getProjectImages(projectId: number) {
 	return pictureUrls;
 }
 
-export async function getLastUpdatedDate(): Promise<string> {
-	const lastUpdatedDateSnapshot = await get(databaseRef(db, 'lastUpdated'));
-	if (!lastUpdatedDateSnapshot.exists()) {
-		return '';
-	}
-	return lastUpdatedDateSnapshot.val();
-}
-
 export async function getCvDownloadUrl(): Promise<string> {
 	return await getDownloadURL(storageRef(storage, 'CV.pdf'));
 }

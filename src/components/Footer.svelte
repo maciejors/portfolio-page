@@ -1,16 +1,5 @@
-<script lang="ts">
-	import { onMount } from 'svelte';
-	import { getLastUpdatedDate } from '../database/db';
-
-	let lastUpdated = '';
-
-	onMount(async () => {
-		lastUpdated = await getLastUpdatedDate();
-	});
-</script>
-
 <footer>
-	<p class="footer-text">Last updated: {lastUpdated}</p>
+	<p class="footer-text">2023 maciejors</p>
 </footer>
 
 <style lang="postcss">
