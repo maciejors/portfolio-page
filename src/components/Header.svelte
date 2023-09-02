@@ -44,15 +44,19 @@
 
 <style lang="postcss">
 	header {
-		@apply w-full h-80 bg-cover text-white bg-green-600 flex flex-row justify-center items-center gap-8 px-40;
+		@apply w-full h-80 bg-cover text-white bg-green-600 flex flex-row justify-center items-center gap-8 px-16;
 	}
 
 	header section {
 		@apply flex flex-col justify-center gap-8;
 	}
 
+	h1 {
+		@apply lg:text-7xl;
+	}
+
 	.bracket {
-		@apply text-9xl text-white opacity-50;
+		@apply hidden sm:block text-6xl md:text-9xl text-white opacity-50;
 	}
 
 	.socials-list {
