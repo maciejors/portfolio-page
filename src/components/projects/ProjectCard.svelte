@@ -73,7 +73,9 @@
 
 <style lang="postcss">
 	.project-card {
-		@apply bg-white border border-transparent w-full sm:w-72 h-56 p-3 flex flex-col justify-between transition-colors;
+		@apply bg-white transition-colors border border-transparent;
+		@apply w-full sm:w-80 sm:h-60 p-3;
+		@apply flex flex-col justify-between gap-2;
 	}
 
 	.project-card.highlighted {
