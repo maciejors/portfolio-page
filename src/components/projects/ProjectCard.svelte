@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { ExternalLinkIcon, CodeIcon, UsersIcon } from 'svelte-feather-icons';
+	import { ExternalLinkIcon, CodeIcon, UsersIcon, BookIcon } from 'svelte-feather-icons';
 	import type Project from '../../types/project';
 	import ImageViewer from '../ImageViewer.svelte';
 	import Pill from '../shared/Pill.svelte';
@@ -46,6 +46,13 @@
 			<Tooltip tooltipText="View project" delayed>
 				<a href={project.projectUrl} target="_blank">
 					<ExternalLinkIcon size="24" />
+				</a>
+			</Tooltip>
+		{/if}
+		{#if project.documentationUrl !== undefined}
+			<Tooltip tooltipText="View documentation" delayed>
+				<a href={project.documentationUrl} target="_blank">
+					<BookIcon size="24" />
 				</a>
 			</Tooltip>
 		{/if}
