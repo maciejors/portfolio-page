@@ -6,5 +6,6 @@ export default interface Project {
 	collaborators: number;
 	repoUrl?: string;
 	projectUrl?: string;
+	documentationUrl?: string;
 	hasImages?: boolean;
 }

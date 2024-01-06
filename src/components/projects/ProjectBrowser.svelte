@@ -51,6 +51,6 @@
 	}
 
 	.projects-grid {
-		@apply grid grid-flow-row gap-8 py-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+		@apply grid grid-flow-row gap-8 py-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
 	}
 </style>

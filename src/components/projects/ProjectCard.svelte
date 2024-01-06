@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { ExternalLinkIcon, CodeIcon, UsersIcon } from 'svelte-feather-icons';
+	import { ExternalLinkIcon, CodeIcon, UsersIcon, BookIcon } from 'svelte-feather-icons';
 	import type Project from '../../types/project';
 	import ImageViewer from '../ImageViewer.svelte';
 	import Pill from '../shared/Pill.svelte';
@@ -49,6 +49,13 @@
 				</a>
 			</Tooltip>
 		{/if}
+		{#if project.documentationUrl !== undefined}
+			<Tooltip tooltipText="View documentation" delayed>
+				<a href={project.documentationUrl} target="_blank">
+					<BookIcon size="24" />
+				</a>
+			</Tooltip>
+		{/if}
 		{#if project.hasImages}
 			<Tooltip tooltipText="View images" delayed>
 				<ImageViewer projectId={project.id} />
@@ -66,7 +73,9 @@
 
 <style lang="postcss">
 	.project-card {
-		@apply bg-white border border-transparent w-full sm:w-72 h-56 p-3 flex flex-col justify-between transition-colors;
+		@apply bg-white transition-colors border border-transparent;
+		@apply w-full sm:w-80 sm:h-60 p-3;
+		@apply flex flex-col justify-between gap-2;
 	}
 
 	.project-card.highlighted {

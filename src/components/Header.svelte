@@ -44,7 +44,7 @@
 
 <style lang="postcss">
 	header {
-		@apply w-full h-80 bg-cover text-white bg-green-600 flex flex-row justify-center items-center gap-8 px-16;
+		@apply w-full h-60 bg-cover text-white bg-green-600 flex flex-row justify-center items-center gap-8 px-16;
 	}
 
 	header section {
@@ -52,7 +52,7 @@
 	}
 
 	h1 {
-		@apply lg:text-7xl;
+		@apply lg:text-7xl text-center sm:text-start;
 	}
 
 	.bracket {
@@ -60,7 +60,7 @@
 	}
 
 	.socials-list {
-		@apply flex flex-row items-center gap-6 h-8;
+		@apply flex flex-row items-center justify-center sm:justify-start gap-6 h-8;
 	}
 
 	a {
