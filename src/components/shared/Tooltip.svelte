@@ -23,6 +23,6 @@
 	}
 
 	.tooltip:hover .delayed {
-		@apply delay-700;
+		@apply delay-500;
 	}
 </style>
