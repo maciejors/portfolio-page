@@ -3,13 +3,13 @@
 	import Container from '../Container.svelte';
 	import ProjectCard from './ProjectCard.svelte';
 	import type Project from '../../types/project';
-	import { getProjects } from '../../database/db';
+	import { getProjectsFromList } from '../../database/db';
 
 	let projects: Project[] = [];
 	let activePill = '';
 
 	onMount(async () => {
-		projects = await getProjects();
+		projects = await getProjectsFromList('featured');
 	});
 
 	function onPillClick(e: CustomEvent<string>) {

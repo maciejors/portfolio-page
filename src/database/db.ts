@@ -18,24 +18,30 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const storage = getStorage(app);
 
-export async function getProjects(): Promise<Project[]> {
-	const featuredListSnapshot = await get(databaseRef(db, 'featured'));
-	if (!featuredListSnapshot.exists()) {
+export async function getProjectsFromList(listName: string): Promise<Project[]> {
+	const listSnapshot = await get(databaseRef(db, `lists/${listName}`));
+	if (!listSnapshot.exists()) {
 		return [];
 	}
-	const projectIds: number[] = featuredListSnapshot.val();
+	const projectIdsRaw: string = listSnapshot.val();
+	const projectIds: number[] = projectIdsRaw.split(',').map((v) => parseInt(v));
 	let projects: Project[] = [];
 	for (let projectId of projectIds) {
 		// fetch project data
-		const projectSnapshot = await get(databaseRef(db, `projects/${projectId}`));
-		if (!projectSnapshot.exists()) {
-			console.log(`No data for project of id ${projectId}`);
-		}
-		const project: Project = projectSnapshot.val();
+		const project = await getProjectData(projectId);
 		// add a project to the project list
 		projects.push(project);
 	}
 	return projects;
+}
+
+async function getProjectData(projectId: number): Promise<Project> {
+	const projectSnapshot = await get(databaseRef(db, `projects/${projectId}`));
+	if (!projectSnapshot.exists()) {
+		console.log(`No data for project of id ${projectId}`);
+	}
+	const project: Project = projectSnapshot.val();
+	return project;
 }
 
 export async function getProjectImages(projectId: number) {
