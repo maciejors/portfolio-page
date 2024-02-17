@@ -1,5 +1,5 @@
 <footer>
-	<p class="footer-text">2023 maciejors</p>
+	<p class="footer-text">2024 maciejors</p>
 </footer>
 
 <style lang="postcss">
