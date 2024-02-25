@@ -1,14 +1,6 @@
 <script lang="ts">
-	import { FileTextIcon, GithubIcon, LinkedinIcon } from 'svelte-feather-icons';
+	import { GithubIcon, LinkedinIcon } from 'svelte-feather-icons';
 	import Tooltip from './shared/Tooltip.svelte';
-	import { onMount } from 'svelte';
-	import { getCvDownloadUrl } from '../database/db';
-
-	let cvDownloadUrl = '';
-
-	onMount(async () => {
-		cvDownloadUrl = await getCvDownloadUrl();
-	});
 </script>
 
 <header>
@@ -27,13 +19,6 @@
 				<Tooltip tooltipText="LinkedIn" delayed>
 					<a href="https://www.linkedin.com/in/maciejors/" target="_blank">
 						<LinkedinIcon size="28" />
-					</a>
-				</Tooltip>
-			</span>
-			<span class="link-wrapper">
-				<Tooltip tooltipText="CV" delayed>
-					<a href={cvDownloadUrl} target="_blank">
-						<FileTextIcon size="28" />
 					</a>
 				</Tooltip>
 			</span>
