@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>My projects</title>
+	<title>Maciej Orsłowski</title>
 </svelte:head>
 
 <Header />
