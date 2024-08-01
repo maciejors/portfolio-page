@@ -43,26 +43,26 @@
 	</main>
 	<footer>
 		{#if project.projectUrl !== undefined}
-			<Tooltip tooltipText="View project" delayed>
+			<Tooltip tooltipText="View project">
 				<a href={project.projectUrl} target="_blank">
 					<ExternalLinkIcon size="24" />
 				</a>
 			</Tooltip>
 		{/if}
 		{#if project.documentationUrl !== undefined}
-			<Tooltip tooltipText="View documentation" delayed>
+			<Tooltip tooltipText="View documentation">
 				<a href={project.documentationUrl} target="_blank">
 					<BookIcon size="24" />
 				</a>
 			</Tooltip>
 		{/if}
 		{#if project.hasImages}
-			<Tooltip tooltipText="View images" delayed>
+			<Tooltip tooltipText="View images">
 				<ImageViewer projectId={project.id} />
 			</Tooltip>
 		{/if}
 		{#if project.repoUrl !== undefined}
-			<Tooltip tooltipText="View code" delayed>
+			<Tooltip tooltipText="View code">
 				<a href={project.repoUrl} target="_blank">
 					<CodeIcon size="24" />
 				</a>
