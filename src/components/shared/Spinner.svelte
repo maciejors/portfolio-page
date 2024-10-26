@@ -7,4 +7,4 @@
 <span
 	class="inline-block border-8 border-gray-100 rounded-[100%] border-b-transparent animate-spin"
 	style={`width: ${size}; height: ${size}; border-width: ${width}px;`}
-/>
+></span>

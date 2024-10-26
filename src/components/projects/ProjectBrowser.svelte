@@ -5,19 +5,18 @@
 	import type Project from '../../types/project';
 	import { getProjectsFromList } from '../../database/db';
 
-	let projects: Project[] = [];
-	let activePill = '';
+	let projects: Project[] = $state([]);
+	let activePill = $state('');
 
 	onMount(async () => {
 		projects = await getProjectsFromList('featured');
 	});
 
-	function onPillClick(e: CustomEvent<string>) {
-		const clickedPill = e.detail;
-		if (clickedPill === activePill) {
+	function onPillClick(pillText: string) {
+		if (pillText === activePill) {
 			activePill = '';
 		} else {
-			activePill = clickedPill;
+			activePill = pillText;
 		}
 	}
 </script>
@@ -29,7 +28,7 @@
 			<section class="projects-grid">
 				{#each projects as project}
 					<div class="col-span-1">
-						<ProjectCard {project} {activePill} on:pillClick={onPillClick} />
+						<ProjectCard {project} {activePill} {onPillClick} />
 					</div>
 				{/each}
 			</section>

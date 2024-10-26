@@ -1,11 +1,17 @@
 <script lang="ts">
-	export let tooltipText: string;
-	export let delayed = false;
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		children: Snippet;
+		tooltipText: string;
+		delayed?: boolean;
+	}
+	let { children, tooltipText, delayed = false }: Props = $props();
 </script>
 
 <span class="tooltip">
 	<span class="tooltip-text" class:delayed>{tooltipText}</span>
-	<slot />
+	{@render children()}
 </span>
 
 <style lang="postcss">

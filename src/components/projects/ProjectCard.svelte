@@ -6,20 +6,17 @@
 	import Pill from '../shared/Pill.svelte';
 	import Tooltip from '../shared/Tooltip.svelte';
 
+	interface Props {
+		project: Project;
+		activePill: string;
+		onPillClick: (pillText: string) => void;
+	}
+	let { project, activePill, onPillClick }: Props = $props();
+
 	const dispatchEvent = createEventDispatcher<{ pillClick: string }>();
+	const highlighted = $derived(project.technologies.includes(activePill));
 
-	export let project: Project;
-	export let activePill: string;
-	$: highlighted = project.technologies.includes(activePill);
-
-	let collabHoverText = `${project.collaborators} collaborator`;
-	if (project.collaborators > 1) {
-		collabHoverText += 's';
-	}
-
-	function onPillClick(pillText: string) {
-		dispatchEvent('pillClick', pillText);
-	}
+	const collabHoverText = `${project.collaborators} collaborator${project.collaborators > 1 ? 's' : ''}`;
 </script>
 
 <section class="card project-card" class:highlighted>
@@ -36,7 +33,7 @@
 		</h3>
 		<p class="pill-list">
 			{#each project.technologies as t (t)}
-				<Pill on:click={() => onPillClick(t)} active={activePill === t}>{t}</Pill>
+				<Pill onclick={() => onPillClick(t)} active={activePill === t}>{t}</Pill>
 			{/each}
 		</p>
 		<p>{project.shortDescription}</p>

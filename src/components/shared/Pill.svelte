@@ -1,9 +1,16 @@
 <script lang="ts">
-	export let active = false;
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		children: Snippet;
+		active?: boolean;
+		onclick: () => void;
+	}
+	let { children, active = false, onclick }: Props = $props();
 </script>
 
-<button class="pill" class:active on:click>
-	<slot />
+<button class="pill" class:active {onclick}>
+	{@render children()}
 </button>
 
 <style lang="postcss">

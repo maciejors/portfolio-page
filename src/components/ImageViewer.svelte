@@ -3,13 +3,16 @@
 	import Spinner from './shared/Spinner.svelte';
 	import { getProjectImages } from '../database/db';
 
-	export let projectId: number;
+	interface Props {
+		projectId: number;
+	}
+	let { projectId }: Props = $props();
 
-	let visible = false;
-	let images: string[] = [];
-	let activeImageIdx = 0;
-	let activeImageUrl = '';
-	let isLoading = true;
+	let visible = $state(false);
+	let images: string[] = $state([]);
+	let activeImageIdx = $state(0);
+	let activeImageUrl = $state('');
+	let isLoading = $state(true);
 
 	async function showImages() {
 		// reset state
@@ -57,7 +60,7 @@
 	}
 </script>
 
-<button class="inline" on:click={showImages}>
+<button class="inline" onclick={showImages}>
 	<ImageIcon size="24" />
 </button>
 {#if visible}
@@ -73,17 +76,17 @@
 			</div>
 		</div>
 		<nav class:invisible={images.length === 0}>
-			<button class="h-fit" on:click={prevImage} class:invisible={activeImageIdx === 0}>
+			<button class="h-fit" onclick={prevImage} class:invisible={activeImageIdx === 0}>
 				<ArrowLeftIcon size="48" />
 			</button>
 			<button
 				class="h-fit"
-				on:click={nextImage}
+				onclick={nextImage}
 				class:invisible={activeImageIdx === images.length - 1}
 			>
 				<ArrowRightIcon size="48" />
 			</button>
-			<button class="absolute top-2 right-2" on:click={hideImages}>
+			<button class="absolute top-2 right-2" onclick={hideImages}>
 				<XIcon size="48" />
 			</button>
 		</nav>
